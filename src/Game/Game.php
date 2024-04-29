@@ -47,10 +47,15 @@ class Game
         $this->board->setStone($x, $y, $stone);
 
         if($x === 0 && $y === 2){
-            $this->board->setStone(0, 1, new Stone(Color::BLACK));
+            $this->flipStones($x, $y, -1, 0);
         }
 
         $this->toggleTurn();
+    }
+
+    private function flipStones(int $x, int $y, int $dx, int $dy): void
+    {
+        $this->board->cell_list[0][1]->flip();
     }
 
     private function toggleTurn(): void
