@@ -124,4 +124,16 @@ final class GameTest extends TestCase
         $this->assertSame($board->cell_list[3][2]->getColor(), Color::BLACK);
         $this->assertSame($board->cell_list[3][3]->getColor(), Color::BLACK);
     }
+
+    public function testCanPut(): void
+    {
+        $board = new Board();
+        $game = new Game($board);
+        // 枠の外は置けない
+        $this->assertFalse($game->canPut(1, 1));
+        // すでに石がある時は置けない
+
+
+        // 挟める石がない時は置けない
+    }
 }

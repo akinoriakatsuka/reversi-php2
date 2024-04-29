@@ -63,6 +63,11 @@ class Game
         $this->toggleTurn();
     }
 
+    public function canPut(int $x, int $y): bool
+    {
+        return false;
+    }
+
     private function flipStones(int $x, int $y, int $dx, int $dy): void
     {
         $turn = $this->turn;
