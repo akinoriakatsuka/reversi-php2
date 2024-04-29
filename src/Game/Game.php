@@ -40,4 +40,16 @@ class Game
         }
         return $output;
     }
+
+    public function play(int $x, int $y): void
+    {
+        $stone = new Stone($this->turn);
+        $this->board->setStone($x, $y, $stone);
+        $this->toggleTurn();
+    }
+
+    private function toggleTurn(): void
+    {
+        $this->turn = $this->turn === Color::BLACK ? Color::WHITE : Color::BLACK;
+    }
 }
