@@ -8,6 +8,9 @@ $game = new Game();
 
 while (true) {
     // ゲームの処理
+    echo '現在の盤面' . PHP_EOL;
+    echo $game->currentBoard();
+
     if ($game->finished())
     {
         break;
