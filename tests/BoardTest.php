@@ -18,4 +18,12 @@ class BoardTest extends TestCase
         $board->setStone(0, 0, $stone);
         $this->assertSame($board->cell_list[0][0]->getColor(), Color::BLACK);
     }
+
+    public function testSetStoneInDifferentPosition(): void
+    {
+        $board = new Board(1, 1);
+        $stone = new Stone(Color::WHITE);
+        $board->setStone(1, 1, $stone);
+        $this->assertSame($board->cell_list[1][1]->getColor(), Color::WHITE);
+    }
 }
