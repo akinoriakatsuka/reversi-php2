@@ -23,6 +23,11 @@ class Game
         return $this->turn;
     }
 
+    public function getBoard(): Board
+    {
+        return $this->board;
+    }
+
     public function currentBoard(): string
     {
         $cell_list = $this->board->cell_list;
@@ -46,8 +51,13 @@ class Game
         $stone = new Stone($this->turn);
         $this->board->setStone($x, $y, $stone);
 
-        if($x === 0 && $y === 2){
-            $this->flipStones($x, $y, -1, 0);
+        for ($dx = -1; $dx <= 1; $dx++) {
+            for ($dy = -1; $dy <= 1; $dy++) {
+                if ($dx === 0 && $dy === 0) {
+                    continue;
+                }
+                $this->flipStones($x, $y, $dx, $dy);
+            }
         }
 
         $this->toggleTurn();
@@ -55,7 +65,30 @@ class Game
 
     private function flipStones(int $x, int $y, int $dx, int $dy): void
     {
-        $this->board->cell_list[0][1]->flip();
+        $turn = $this->turn;
+        $board = $this->board;
+        $opponent = ($turn === Color::BLACK) ? Color::WHITE : Color::BLACK;
+        $flippable = [];
+        while(true) {
+            $x += $dx;
+            $y += $dy;
+            if($x < 0 || $x >= $board->rows || $y < 0 || $y >= $board->columns) {
+                return; // flipせずに終了
+            }
+            $cell = $this->board->cell_list[$x][$y];
+            if($cell === null) {
+                return; // flipせずに終了
+            }
+            if($cell->getColor() === $turn) {
+                break;
+            }
+            if($cell->getColor() === $opponent) {
+                $flippable[] = [$x, $y];
+            }
+        }
+        foreach($flippable as $pos) {
+            $this->board->cell_list[$pos[0]][$pos[1]]->flip();
+        }
     }
 
     private function toggleTurn(): void

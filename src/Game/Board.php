@@ -5,9 +5,13 @@ namespace App\Game;
 class Board
 {
     public array $cell_list;
+    public readonly int $rows;
+    public readonly int $columns;
 
     public function __construct($rows = 8, $columns = 8)
     {
+        $this->rows = $rows;
+        $this->columns = $columns;
         $this->cell_list = [];
         for ($i = 0; $i < $rows; $i++) {
             $this->cell_list[] = [];
