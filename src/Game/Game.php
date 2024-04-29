@@ -6,9 +6,9 @@ class Game
 {
     private Board $board;
 
-    public function __construct()
+    public function __construct($board)
     {
-        $this->board = new Board();
+        $this->board = $board;
     }
 
     public function finished(): bool

@@ -3,8 +3,10 @@
 require_once __DIR__ . '/vendor/autoload.php';
 
 use App\Game\Game;
+use App\Game\Board;
 
-$game = new Game();
+$board = new Board();
+$game = new Game($board);
 
 while (true) {
     // ゲームの処理
