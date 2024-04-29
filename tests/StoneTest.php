@@ -15,4 +15,11 @@ final class StoneTest extends TestCase
         $stone = new Stone(Color::BLACK);
         $this->assertSame($stone->getColor(), Color::BLACK);
     }
+
+    public function testFlip(): void
+    {
+        $stone = new Stone(Color::BLACK);
+        $stone->flip();
+        $this->assertSame($stone->getColor(), Color::WHITE);
+    }
 }

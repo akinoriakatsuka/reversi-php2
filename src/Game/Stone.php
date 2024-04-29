@@ -17,4 +17,12 @@ class Stone
     {
         return $this->color;
     }
+
+    public function flip(): void
+    {
+        $this->color = match ($this->color) {
+            Color::BLACK => Color::WHITE,
+            Color::WHITE => Color::BLACK,
+        };
+    }
 }

@@ -66,5 +66,15 @@ final class GameTest extends TestCase
 
         EOL;
         $this->assertSame($currentBoard, $expected);
+
+        $game->play(0, 2);
+        $this->assertSame($game->getTurn(), Color::WHITE);
+        $currentBoard = $game->currentBoard();
+        $expected = <<<EOL
+          a b c d e f g h
+        1 o o o - - - - -
+
+        EOL;
+        $this->assertSame($currentBoard, $expected);
     }
 }

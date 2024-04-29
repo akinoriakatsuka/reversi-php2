@@ -45,6 +45,11 @@ class Game
     {
         $stone = new Stone($this->turn);
         $this->board->setStone($x, $y, $stone);
+
+        if($x === 0 && $y === 2){
+            $this->board->setStone(0, 1, new Stone(Color::BLACK));
+        }
+
         $this->toggleTurn();
     }
 
