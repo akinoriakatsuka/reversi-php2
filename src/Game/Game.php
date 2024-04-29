@@ -23,7 +23,11 @@ class Game
         foreach ($cell_list as $row_index => $row) {
             $output .= $row_index + 1;
             foreach ($row as $cell) {
-                $output .= ' -';
+                if ($cell === null) {
+                    $output .= ' -';
+                } else {
+                    $output .= ' ' . $cell->getColor()->getMark();
+                }
             }
             $output .= PHP_EOL;
         }
