@@ -34,4 +34,12 @@ final class GameTest extends TestCase
         EOL;
         $this->assertSame($currentBoard, $expected);
     }
+
+    public function testGetTurn(): void
+    {
+        $board = new Board();
+        $game = new Game($board);
+        $turn = $game->getTurn();
+        $this->assertSame($turn, Color::BLACK);
+    }
 }

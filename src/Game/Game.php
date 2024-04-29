@@ -5,15 +5,22 @@ namespace App\Game;
 class Game
 {
     private Board $board;
+    private Color $turn;
 
     public function __construct($board)
     {
         $this->board = $board;
+        $this->turn = Color::BLACK;
     }
 
     public function finished(): bool
     {
         return true;
+    }
+
+    public function getTurn(): Color
+    {
+        return $this->turn;
     }
 
     public function currentBoard(): string
