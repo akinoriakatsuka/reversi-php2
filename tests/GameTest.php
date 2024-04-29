@@ -17,7 +17,7 @@ final class GameTest extends TestCase
         $board = new Board();
         $game = new Game($board);
         $finished = $game->finished();
-        $this->assertSame($finished, true);
+        $this->assertSame($finished, false);
     }
 
     public function testCurrentBoard(): void

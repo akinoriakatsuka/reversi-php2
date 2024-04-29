@@ -15,7 +15,7 @@ class Game
 
     public function finished(): bool
     {
-        return true;
+        return false;
     }
 
     public function getTurn(): Color
