@@ -46,13 +46,9 @@ final class GameTest extends TestCase
     public function testPlay(): void
     {
         $board = new Board(1, 8);
+        $board->setStone(0, 0, new Stone(Color::BLACK));
+        $board->setStone(0, 1, new Stone(Color::WHITE));
         $game = new Game($board);
-
-        $game->play(0, 0);
-        $this->assertSame($game->getTurn(), Color::WHITE);
-
-        $game->play(0, 1);
-        $this->assertSame($game->getTurn(), Color::BLACK);
 
         $game->play(0, 2);
         $this->assertSame($game->getTurn(), Color::WHITE);
