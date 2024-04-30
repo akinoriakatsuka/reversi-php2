@@ -69,3 +69,11 @@ while (true) {
 }
 
 echo 'ゲーム終了' . PHP_EOL;
+echo $game->currentBoard();
+echo $game->getBoard()->numberOf(new Stone(Color::BLACK)) . '対' . $game->getBoard()->numberOf(new Stone(Color::WHITE)) . 'で ';
+if ($game->getWinner() === null) {
+    echo '引き分けです' . PHP_EOL;
+} else {
+    $winner = $game->getWinner() === Color::BLACK ? '黒' : '白';
+    echo "$winner の勝ちです" . PHP_EOL;
+}
