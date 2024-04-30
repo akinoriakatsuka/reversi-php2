@@ -7,7 +7,7 @@ class Game
     private Board $board;
     private Color $turn;
 
-    public function __construct($board)
+    public function __construct(Board $board)
     {
         $this->board = $board;
         $this->turn = Color::BLACK;
@@ -46,8 +46,15 @@ class Game
         return $output;
     }
 
+    /**
+     * @throws \Exception
+     */
     public function play(int $x, int $y): void
     {
+        if(!$this->canPut($x, $y)) {
+            throw new \Exception('ここには置けません');
+        }
+
         $stone = new Stone($this->turn);
         $this->board->setStone($x, $y, $stone);
 
@@ -85,6 +92,9 @@ class Game
         return false;
     }
 
+    /**
+     * @return array<array<int>>
+     */
     private function getFlippableStones(int $x, int $y, int $dx, int $dy): array
     {
         $turn = $this->turn;

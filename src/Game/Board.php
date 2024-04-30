@@ -4,11 +4,14 @@ namespace App\Game;
 
 class Board
 {
+    /**
+     * @var array<array<Stone|null>> $cell_list
+     */
     public array $cell_list;
     public readonly int $rows;
     public readonly int $columns;
 
-    public function __construct($rows = 8, $columns = 8)
+    public function __construct(int $rows = 8, int $columns = 8)
     {
         $this->rows = $rows;
         $this->columns = $columns;

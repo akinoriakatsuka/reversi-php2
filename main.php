@@ -16,7 +16,8 @@ $game = new Game($board);
 
 while (true) {
     $turn = $game->getTurn() === Color::BLACK ? '黒' : '白';
-    echo $turn . ' の手番です' . PHP_EOL;
+    $mark = $game->getTurn()->getMark();
+    echo "$turn($mark) の手番です" . PHP_EOL;
     echo $game->currentBoard();
 
     echo '石を置く場所を入力してください（qで途中終了）: ';
@@ -28,6 +29,7 @@ while (true) {
     }
 
     $row = (int) $input[0] - 1;
+    // TODO: 文字と座標のマッピングを後で改善する
     $col = match ($input[1]) {
         'a' => 0,
         'b' => 1,
@@ -39,7 +41,11 @@ while (true) {
         'h' => 7,
     };
 
-    $game->play($row, $col);
+    try {
+        $game->play($row, $col);
+    } catch (Exception $e) {
+        echo PHP_EOL . $e->getMessage() . PHP_EOL;
+    }
     echo PHP_EOL;
     if ($game->finished()) {
         break;
