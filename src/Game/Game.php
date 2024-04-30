@@ -113,27 +113,7 @@ class Game
 
     private function flipStones(int $x, int $y, int $dx, int $dy): void
     {
-        $turn = $this->turn;
-        $board = $this->board;
-        $opponent = ($turn === Color::BLACK) ? Color::WHITE : Color::BLACK;
-        $flippable = [];
-        while(true) {
-            $x += $dx;
-            $y += $dy;
-            if($x < 0 || $x >= $board->rows || $y < 0 || $y >= $board->columns) {
-                return; // flipせずに終了
-            }
-            $cell = $this->board->cell_list[$x][$y];
-            if($cell === null) {
-                return; // flipせずに終了
-            }
-            if($cell->getColor() === $turn) {
-                break;
-            }
-            if($cell->getColor() === $opponent) {
-                $flippable[] = [$x, $y];
-            }
-        }
+        $flippable = $this->getFlippableStones($x, $y, $dx, $dy);
         foreach($flippable as $pos) {
             $this->board->cell_list[$pos[0]][$pos[1]]->flip();
         }
