@@ -26,4 +26,16 @@ class BoardTest extends TestCase
         $board->setStone(1, 1, $stone);
         $this->assertSame($board->cell_list[1][1]->getColor(), Color::WHITE);
     }
+
+    public function testNumberOf(): void
+    {
+        $board = new Board();
+        $black = new Stone(Color::BLACK);
+        $white = new Stone(Color::WHITE);
+        $board->setStone(0, 0, $black);
+        $board->setStone(0, 1, $white);
+        $board->setStone(0, 2, $white);
+        $this->assertSame($board->numberOf($black), 1);
+        $this->assertSame($board->numberOf($white), 2);
+    }
 }

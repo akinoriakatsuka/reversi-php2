@@ -169,4 +169,16 @@ final class GameTest extends TestCase
         $this->assertSame($game->getTurn(), Color::BLACK);
         $this->assertTrue($game->finished());
     }
+
+    public function testGetWinner(): void
+    {
+        $board = new Board();
+        $game = new Game($board);
+        $board->setStone(0, 0, new Stone(Color::BLACK));
+        $this->assertSame($game->getWinner(), Color::BLACK);
+        $board->setStone(0, 1, new Stone(Color::WHITE));
+        $this->assertSame($game->getWinner(), null);
+        $board->setStone(0, 2, new Stone(Color::WHITE));
+        $this->assertSame($game->getWinner(), Color::WHITE);
+    }
 }

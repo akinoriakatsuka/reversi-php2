@@ -160,4 +160,19 @@ class Game
     {
         $this->turn = $this->turn === Color::BLACK ? Color::WHITE : Color::BLACK;
     }
+
+    public function getWinner(): ?Color
+    {
+        $black = new Stone(Color::BLACK);
+        $white = new Stone(Color::WHITE);
+        $black_count = $this->board->numberOf($black);
+        $white_count = $this->board->numberOf($white);
+        if($black_count > $white_count) {
+            return Color::BLACK;
+        }
+        if($black_count < $white_count) {
+            return Color::WHITE;
+        }
+        return null;
+    }
 }

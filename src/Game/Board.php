@@ -40,4 +40,17 @@ class Board
         }
         return true;
     }
+
+    public function numberOf(Stone $stone): int
+    {
+        $count = 0;
+        foreach ($this->cell_list as $row) {
+            foreach ($row as $cell) {
+                if ($cell !== null && $cell->getColor() === $stone->getColor()) {
+                    $count++;
+                }
+            }
+        }
+        return $count;
+    }
 }
