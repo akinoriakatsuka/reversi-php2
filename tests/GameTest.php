@@ -128,12 +128,16 @@ final class GameTest extends TestCase
     public function testCanPut(): void
     {
         $board = new Board();
+        $board->setStone(0, 0, new Stone(Color::BLACK));
+        $board->setStone(0, 1, new Stone(Color::WHITE));
         $game = new Game($board);
         // 枠の外は置けない
-        $this->assertFalse($game->canPut(1, 1));
+        $this->assertFalse($game->canPut(-1, 0));
         // すでに石がある時は置けない
-
-
+        $this->assertFalse($game->canPut(0, 0));
         // 挟める石がない時は置けない
+        $this->assertFalse($game->canPut(1, 1));
+        // 挟める石がある時は置ける
+        $this->assertTrue($game->canPut(0, 2));
     }
 }

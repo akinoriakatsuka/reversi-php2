@@ -65,7 +65,50 @@ class Game
 
     public function canPut(int $x, int $y): bool
     {
+        $board = $this->board;
+        if ($x < 0 || $x >= $board->rows || $y < 0 || $y >= $board->columns) {
+            return false;
+        }
+        if ($board->cell_list[$x][$y] !== null) {
+            return false;
+        }
+        for ($dx = -1; $dx <= 1; $dx++) {
+            for ($dy = -1; $dy <= 1; $dy++) {
+                if ($dx === 0 && $dy === 0) {
+                    continue;
+                }
+                if(!empty($this->getFlippableStones($x, $y, $dx, $dy))) {
+                    return true;
+                }
+            }
+        }
         return false;
+    }
+
+    private function getFlippableStones(int $x, int $y, int $dx, int $dy): array
+    {
+        $turn = $this->turn;
+        $board = $this->board;
+        $opponent = ($turn === Color::BLACK) ? Color::WHITE : Color::BLACK;
+        $flippable = [];
+        while(true) {
+            $x += $dx;
+            $y += $dy;
+            if($x < 0 || $x >= $board->rows || $y < 0 || $y >= $board->columns) {
+                return [];
+            }
+            $cell = $this->board->cell_list[$x][$y];
+            if($cell === null) {
+                return [];
+            }
+            if($cell->getColor() === $turn) {
+                break;
+            }
+            if($cell->getColor() === $opponent) {
+                $flippable[] = [$x, $y];
+            }
+        }
+        return $flippable;
     }
 
     private function flipStones(int $x, int $y, int $dx, int $dy): void
