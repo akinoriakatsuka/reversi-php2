@@ -6,11 +6,13 @@ class Game
 {
     private Board $board;
     private Color $turn;
+    private int $pass_count;
 
     public function __construct(Board $board)
     {
         $this->board = $board;
         $this->turn = Color::BLACK;
+        $this->pass_count = 0;
     }
 
     public function finished(): bool
@@ -18,7 +20,16 @@ class Game
         if ($this->board->isFull()) {
             return true;
         }
+        if ($this->pass_count >= 2) {
+            return true;
+        }
         return false;
+    }
+
+    public function pass(): void
+    {
+        $this->toggleTurn();
+        $this->pass_count++;
     }
 
     public function getTurn(): Color
@@ -49,6 +60,19 @@ class Game
         return $output;
     }
 
+    public function canPlay(): bool
+    {
+        $board = $this->board;
+        for ($x = 0; $x < $board->rows; $x++) {
+            for ($y = 0; $y < $board->columns; $y++) {
+                if ($this->canPut($x, $y)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
     /**
      * @throws \Exception
      */
@@ -69,7 +93,7 @@ class Game
                 $this->flipStones($x, $y, $dx, $dy);
             }
         }
-
+        $this->pass_count = 0;
         $this->toggleTurn();
     }
 

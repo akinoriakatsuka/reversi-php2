@@ -142,4 +142,31 @@ final class GameTest extends TestCase
         // 挟める石がある時は置ける
         $this->assertTrue($game->canPut(0, 2));
     }
+
+    public function testCanPlay(): void
+    {
+        $board = new Board();
+        $board->setStone(0, 0, new Stone(Color::BLACK));
+        $board->setStone(0, 1, new Stone(Color::WHITE));
+        $game = new Game($board);
+        $this->assertTrue($game->canPlay());
+
+        $board = new Board();
+        $board->setStone(0, 0, new Stone(Color::WHITE));
+        $board->setStone(0, 1, new Stone(Color::BLACK));
+        $game = new Game($board);
+        $this->assertFalse($game->canPlay());
+    }
+
+    public function testPass(): void
+    {
+        $board = new Board();
+        $game = new Game($board);
+        $game->pass();
+        $this->assertSame($game->getTurn(), Color::WHITE);
+        $this->assertFalse($game->finished());
+        $game->pass();
+        $this->assertSame($game->getTurn(), Color::BLACK);
+        $this->assertTrue($game->finished());
+    }
 }

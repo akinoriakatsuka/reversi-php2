@@ -15,11 +15,21 @@ $board->setStone(4, 4, new Stone(Color::WHITE));
 $game = new Game($board);
 
 while (true) {
+
     $turn = $game->getTurn() === Color::BLACK ? '黒' : '白';
     $mark = $game->getTurn()->getMark();
     echo "$turn($mark) の手番です" . PHP_EOL;
+    
+    if (!$game->canPlay()) {
+        echo '置ける場所がないのでパスします' . PHP_EOL;
+        $game->pass();
+        if ($game->finished()) {
+            break;
+        }
+        continue;
+    }
+    
     echo $game->currentBoard();
-
     echo '石を置く場所を入力してください（qで途中終了）: ';
 
     $input = trim(fgets(STDIN));
@@ -39,7 +49,13 @@ while (true) {
         'f' => 5,
         'g' => 6,
         'h' => 7,
+        default => -1,
     };
+
+    if ($col === -1 || $row < 0 || $row >= $game->getBoard()->rows || $col < 0 || $col >= $game->getBoard()->columns) {
+        echo '置く場所の形式が間違っています' . PHP_EOL;
+        continue;
+    }
 
     try {
         $game->play($row, $col);
