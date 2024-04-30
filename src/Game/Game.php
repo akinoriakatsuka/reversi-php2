@@ -15,6 +15,9 @@ class Game
 
     public function finished(): bool
     {
+        if ($this->board->isFull()) {
+            return true;
+        }
         return false;
     }
 

@@ -18,6 +18,12 @@ final class GameTest extends TestCase
         $game = new Game($board);
         $finished = $game->finished();
         $this->assertSame($finished, false);
+
+        $board = new Board(1, 1);
+        $board->setStone(0, 0, new Stone(Color::BLACK));
+        $game = new Game($board);
+        $finished = $game->finished();
+        $this->assertSame($finished, true);
     }
 
     public function testCurrentBoard(): void

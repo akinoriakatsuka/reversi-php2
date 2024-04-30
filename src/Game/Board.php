@@ -28,4 +28,16 @@ class Board
     {
         $this->cell_list[$x][$y] = $stone;
     }
+
+    public function isFull(): bool
+    {
+        foreach ($this->cell_list as $row) {
+            foreach ($row as $cell) {
+                if ($cell === null) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
 }
