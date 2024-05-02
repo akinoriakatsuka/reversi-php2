@@ -74,6 +74,24 @@ class Game
     }
 
     /**
+     * 置けるマスを配列で返す
+     * @return array<array<int>> [[x, y], [x, y], ...]
+     */
+    public function getPlayableCells(): array
+    {
+        $playable_cells = [];
+        $board = $this->board;
+        for ($x = 0; $x < $board->rows; $x++) {
+            for ($y = 0; $y < $board->columns; $y++) {
+                if ($this->canPut($x, $y)) {
+                    $playable_cells[] = [$x, $y];
+                }
+            }
+        }
+        return $playable_cells;
+    }
+
+    /**
      * @throws \Exception
      */
     public function play(int $x, int $y): void
