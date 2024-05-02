@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tests;
+namespace Tests\Game;
 
 use App\Game\Stone;
 use App\Game\Color;
