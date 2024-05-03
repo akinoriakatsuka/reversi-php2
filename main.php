@@ -7,6 +7,7 @@ use App\Game\Board;
 use App\Game\Color;
 use App\Game\Stone;
 use App\Player\HumanPlayer;
+use App\Player\CPUPlayer;
 
 $board = new Board();
 $board->setStone(3, 3, new Stone(Color::WHITE));
@@ -14,7 +15,9 @@ $board->setStone(3, 4, new Stone(Color::BLACK));
 $board->setStone(4, 3, new Stone(Color::BLACK));
 $board->setStone(4, 4, new Stone(Color::WHITE));
 $game = new Game($board);
-$human = new HumanPlayer();
+
+$black = new HumanPlayer($game);
+$white = new CPUPlayer($game);
 
 while (true) {
     $turn = $game->getTurn() === Color::BLACK ? '黒' : '白';
@@ -32,24 +35,12 @@ while (true) {
 
     echo $game->currentBoard();
 
-    if ($game->getTurn() === Color::BLACK) {
-        echo '石を置く場所を入力してください（qで途中終了）: ';
-        $input = $human->input();
-        if ($human->shouldQuit($input)) {
-            break;
-        }
-        $cell = $human->getCell($input);
-        $row = $cell[0];
-        $col = $cell[1];
-    } else {
-        $playable = $game->getPlayableCells();
-        $random_key = array_rand($playable);
-        $row = $playable[$random_key][0];
-        $col = $playable[$random_key][1];
-    }
-
     try {
-        $game->play($row, $col);
+        if ($game->getTurn() === Color::BLACK) {
+            $black->play();
+        } else {
+            $white->play();
+        }
     } catch (Exception $e) {
         echo PHP_EOL . $e->getMessage() . PHP_EOL;
     }

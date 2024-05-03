@@ -1,13 +1,32 @@
 <?php
 
 namespace App\Player;
+use App\Game\Game;
 
-class HumanPlayer {
+class HumanPlayer implements Player
+{
+
+    public function __construct(private Game $game)
+    {
+    }
+
+    public function play(): void
+    {
+        echo '石を置く場所を入力してください（qで途中終了）: ';
+        $input = $this->input();
+        if ($this->shouldQuit($input)) {
+            exit;
+        }
+        $cell = $this->getCell($input);
+        $row = $cell[0];
+        $col = $cell[1];
+        $this->game->play($row, $col);
+    }
 
     /**
      * 入力された文字列を返す
      */
-    public function input(): string
+    private function input(): string
     {
         return trim(fgets(STDIN));
     }
@@ -15,7 +34,7 @@ class HumanPlayer {
     /**
      * ゲームを中断するかどうかを返す
      */
-    public function shouldQuit(string $input): bool
+    private function shouldQuit(string $input): bool
     {
         return $input === 'q';
     }
@@ -23,7 +42,7 @@ class HumanPlayer {
     /**
      * 入力された文字列をプレイする座標に変換して返す
      */
-    public function getCell(string $input): array
+    private function getCell(string $input): array
     {
         $row = (int) $input[0] - 1;
         $col = match ($input[1]) {
