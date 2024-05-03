@@ -31,15 +31,22 @@ while (true) {
     }
 
     echo $game->currentBoard();
-    
-    echo '石を置く場所を入力してください（qで途中終了）: ';
-    $input = $human->input();
-    if ($human->shouldQuit($input)) {
-        break;
+
+    if ($game->getTurn() === Color::BLACK) {
+        echo '石を置く場所を入力してください（qで途中終了）: ';
+        $input = $human->input();
+        if ($human->shouldQuit($input)) {
+            break;
+        }
+        $cell = $human->getCell($input);
+        $row = $cell[0];
+        $col = $cell[1];
+    } else {
+        $playable = $game->getPlayableCells();
+        $random_key = array_rand($playable);
+        $row = $playable[$random_key][0];
+        $col = $playable[$random_key][1];
     }
-    $cell = $human->getCell($input);
-    $row = $cell[0];
-    $col = $cell[1];
 
     try {
         $game->play($row, $col);
