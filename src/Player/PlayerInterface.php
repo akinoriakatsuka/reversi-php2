@@ -2,7 +2,7 @@
 
 namespace App\Player;
 
-interface Player
+interface PlayerInterface
 {
     public function play(): void;
 }

@@ -4,7 +4,7 @@ namespace App\Player;
 
 use App\Game\Game;
 
-class CPUPlayer implements Player
+class CPUPlayer implements PlayerInterface
 {
     public function __construct(private Game $game)
     {
