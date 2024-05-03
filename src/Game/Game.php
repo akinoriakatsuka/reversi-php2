@@ -179,6 +179,18 @@ class Game
         $this->turn = $this->turn === Color::BLACK ? Color::WHITE : Color::BLACK;
     }
 
+    public function getResult(): string
+    {
+        $result = $this->getBoard()->numberOf(Color::BLACK) . '対' . $this->getBoard()->numberOf(Color::WHITE) . 'で ';
+        if ($this->getWinner() === null) {
+            $result .= '引き分けです' . PHP_EOL;
+        } else {
+            $winner = $this->getWinner() === Color::BLACK ? '黒' : '白';
+            $result .= "$winner の勝ちです" . PHP_EOL;
+        }
+        return $result;
+    }
+
     public function getWinner(): ?Color
     {
         $black_count = $this->board->numberOf(Color::BLACK);

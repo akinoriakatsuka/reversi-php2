@@ -1,11 +1,11 @@
 <?php
 
 namespace App\Player;
+
 use App\Game\Game;
 
 class HumanPlayer implements PlayerInterface
 {
-
     public function __construct(private Game $game)
     {
     }

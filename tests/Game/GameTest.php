@@ -191,4 +191,15 @@ final class GameTest extends TestCase
         $board->setStone(0, 2, new Stone(Color::WHITE));
         $this->assertSame($game->getPlayableCells(), [[0, 3]]);
     }
+
+    public function testGetResult(): void
+    {
+        $board = new Board();
+        $game = new Game($board);
+        $board->setStone(0, 0, new Stone(Color::BLACK));
+        $board->setStone(0, 1, new Stone(Color::WHITE));
+        $board->setStone(0, 2, new Stone(Color::WHITE));
+        $result = $game->getResult();
+        $this->assertSame($result, '1対2で 白 の勝ちです' . PHP_EOL);
+    }
 }
