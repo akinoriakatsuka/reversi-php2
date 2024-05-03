@@ -20,7 +20,7 @@ class HumanPlayer implements Player
         $cell = $this->getCell($input);
         $row = $cell[0];
         $col = $cell[1];
-        $this->game->play($row, $col);
+        $this->game->process($row, $col);
     }
 
     /**

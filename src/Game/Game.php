@@ -94,7 +94,7 @@ class Game
     /**
      * @throws \Exception
      */
-    public function play(int $x, int $y): void
+    public function process(int $x, int $y): void
     {
         if(!$this->canPut($x, $y)) {
             throw new \Exception('ここには置けません');

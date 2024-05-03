@@ -49,14 +49,14 @@ final class GameTest extends TestCase
         $this->assertSame($turn, Color::BLACK);
     }
 
-    public function testPlay(): void
+    public function testProcess(): void
     {
         $board = new Board(1, 8);
         $board->setStone(0, 0, new Stone(Color::BLACK));
         $board->setStone(0, 1, new Stone(Color::WHITE));
         $game = new Game($board);
 
-        $game->play(0, 2);
+        $game->process(0, 2);
         $this->assertSame($game->getTurn(), Color::WHITE);
         $currentBoard = $game->currentBoard();
         $expected = <<<EOL
@@ -78,7 +78,7 @@ final class GameTest extends TestCase
         $board->setStone(0, 2, new Stone(Color::WHITE));
         $game = new Game($board);
 
-        $game->play(0, 3);
+        $game->process(0, 3);
 
         $board = $game->getBoard();
 
@@ -113,7 +113,7 @@ final class GameTest extends TestCase
 
         $game = new Game($board);
 
-        $game->play(2, 2);
+        $game->process(2, 2);
 
         $board = $game->getBoard();
 

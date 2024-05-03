@@ -16,6 +16,6 @@ class CPUPlayer implements Player
         $random_key = array_rand($playable);
         $row = $playable[$random_key][0];
         $col = $playable[$random_key][1];
-        $this->game->play($row, $col);
+        $this->game->process($row, $col);
     }
 }
