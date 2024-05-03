@@ -35,7 +35,7 @@ class BoardTest extends TestCase
         $board->setStone(0, 0, $black);
         $board->setStone(0, 1, $white);
         $board->setStone(0, 2, $white);
-        $this->assertSame($board->numberOf($black), 1);
-        $this->assertSame($board->numberOf($white), 2);
+        $this->assertSame($board->numberOf(Color::BLACK), 1);
+        $this->assertSame($board->numberOf(Color::WHITE), 2);
     }
 }

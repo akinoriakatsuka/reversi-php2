@@ -2,19 +2,12 @@
 
 require_once __DIR__ . '/vendor/autoload.php';
 
-use App\Game\Game;
-use App\Game\Board;
+use App\Game\GameFactory;
 use App\Game\Color;
-use App\Game\Stone;
 use App\Player\HumanPlayer;
 use App\Player\CPUPlayer;
 
-$board = new Board();
-$board->setStone(3, 3, new Stone(Color::WHITE));
-$board->setStone(3, 4, new Stone(Color::BLACK));
-$board->setStone(4, 3, new Stone(Color::BLACK));
-$board->setStone(4, 4, new Stone(Color::WHITE));
-$game = new Game($board);
+$game = GameFactory::create();
 
 $black = new HumanPlayer($game);
 $white = new CPUPlayer($game);
@@ -52,7 +45,7 @@ while (true) {
 
 echo 'ゲーム終了' . PHP_EOL;
 echo $game->currentBoard();
-echo $game->getBoard()->numberOf(new Stone(Color::BLACK)) . '対' . $game->getBoard()->numberOf(new Stone(Color::WHITE)) . 'で ';
+echo $game->getBoard()->numberOf(Color::BLACK) . '対' . $game->getBoard()->numberOf(Color::WHITE) . 'で ';
 if ($game->getWinner() === null) {
     echo '引き分けです' . PHP_EOL;
 } else {

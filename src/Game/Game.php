@@ -181,10 +181,8 @@ class Game
 
     public function getWinner(): ?Color
     {
-        $black = new Stone(Color::BLACK);
-        $white = new Stone(Color::WHITE);
-        $black_count = $this->board->numberOf($black);
-        $white_count = $this->board->numberOf($white);
+        $black_count = $this->board->numberOf(Color::BLACK);
+        $white_count = $this->board->numberOf(Color::WHITE);
         if($black_count > $white_count) {
             return Color::BLACK;
         }

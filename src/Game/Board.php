@@ -41,12 +41,12 @@ class Board
         return true;
     }
 
-    public function numberOf(Stone $stone): int
+    public function numberOf(Color $color): int
     {
         $count = 0;
         foreach ($this->cell_list as $row) {
             foreach ($row as $cell) {
-                if ($cell !== null && $cell->getColor() === $stone->getColor()) {
+                if ($cell !== null && $cell->getColor() === $color) {
                     $count++;
                 }
             }
