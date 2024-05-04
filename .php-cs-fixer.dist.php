@@ -9,6 +9,7 @@ return $config
     ->setRiskyAllowed(true)
     ->setRules([
         '@PSR12' => true,
+        'ordered_class_elements' => true,
     ])
     ->setFinder(
         PhpCsFixer\Finder::create()
