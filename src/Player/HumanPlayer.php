@@ -12,15 +12,8 @@ class HumanPlayer implements PlayerInterface
 
     public function chooseCell(): array
     {
-        echo '石を置く場所を入力してください（qで途中終了）: ';
         $input = $this->input();
-        if ($this->shouldQuit($input)) {
-            exit;
-        }
-        $cell = $this->getCell($input);
-        $row = $cell[0];
-        $col = $cell[1];
-        return [$row, $col];
+        return $this->getCell($input);
     }
 
     /**
@@ -29,14 +22,6 @@ class HumanPlayer implements PlayerInterface
     private function input(): string
     {
         return trim(fgets(STDIN));
-    }
-
-    /**
-     * ゲームを中断するかどうかを返す
-     */
-    private function shouldQuit(string $input): bool
-    {
-        return $input === 'q';
     }
 
     /**
