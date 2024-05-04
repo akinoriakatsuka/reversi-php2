@@ -2,22 +2,17 @@
 
 namespace App\Game;
 
-use App\Output\ConsoleOutput;
+use App\Output\OutputInterface;
 use App\Player\PlayerInterface;
 
 class GameDealer
 {
-    private Game $game;
-    private ConsoleOutput $output;
-    private PlayerInterface $black;
-    private PlayerInterface $white;
-
-    public function __construct(Game $game, ConsoleOutput $output, PlayerInterface $black, PlayerInterface $white)
-    {
-        $this->game = $game;
-        $this->output = $output;
-        $this->black = $black;
-        $this->white = $white;
+    public function __construct(
+        private Game $game,
+        private OutputInterface $output,
+        private PlayerInterface $black,
+        private PlayerInterface $white
+    ) {
     }
 
     public function deal(): void
@@ -45,9 +40,11 @@ class GameDealer
 
             try {
                 if ($game->getTurn() === Color::BLACK) {
-                    $black->play();
+                    $cell = $black->chooseCell();
+                    $this->game->process($cell[0], $cell[1]);
                 } else {
-                    $white->play();
+                    $cell = $white->chooseCell();
+                    $this->game->process($cell[0], $cell[1]);
                 }
             } catch (\Exception $e) {
                 $output->write(PHP_EOL . $e->getMessage() . PHP_EOL);

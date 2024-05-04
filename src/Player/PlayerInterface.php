@@ -4,5 +4,5 @@ namespace App\Player;
 
 interface PlayerInterface
 {
-    public function play(): void;
+    public function chooseCell(): array;
 }

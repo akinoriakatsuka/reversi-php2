@@ -10,7 +10,7 @@ class HumanPlayer implements PlayerInterface
     {
     }
 
-    public function play(): void
+    public function chooseCell(): array
     {
         echo '石を置く場所を入力してください（qで途中終了）: ';
         $input = $this->input();
@@ -20,7 +20,7 @@ class HumanPlayer implements PlayerInterface
         $cell = $this->getCell($input);
         $row = $cell[0];
         $col = $cell[1];
-        $this->game->process($row, $col);
+        return [$row, $col];
     }
 
     /**

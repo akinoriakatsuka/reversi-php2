@@ -20,7 +20,9 @@
 - [x] 呼び出し側のコードを整理する
   - [x] 呼び出し側が知らないといけないことを減らす
   - [x] GameDealerを作って、GameのロジックとUIのロジックを分離する
-- [ ]GameDealerがInterfaceを受け取るようにする
-  - [ ]output
+- [x] GameDealerがInterfaceを受け取るようにする
+  - [x] Output
+  - [x] Player
 - [x] CPUと対戦できるようにする
 - [ ] 入力で何も入力しないでエンターを押すとwarningが出る
+- [ ] chooseCellで直接exitするのは良くない
