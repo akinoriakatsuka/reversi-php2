@@ -23,6 +23,10 @@ class GameDealer
         $output = $this->output;
         $black = $this->black;
         $white = $this->white;
+        $players = [
+            Color::BLACK->value => $black,
+            Color::WHITE->value => $white
+        ];
 
         while (true) {
             $turn = $game->getTurn() === Color::BLACK ? '黒' : '白';
@@ -41,19 +45,11 @@ class GameDealer
             $output->write($game->currentBoard());
 
             try {
-                if ($game->getTurn() === Color::BLACK) {
-                    $cell = $black->chooseCell();
-                    if ($cell === false) {
-                        break;
-                    }
-                    $game->process($cell[0], $cell[1]);
-                } else {
-                    $cell = $white->chooseCell();
-                    if ($cell === false) {
-                        break;
-                    }
-                    $game->process($cell[0], $cell[1]);
+                $cell = $players[$game->getTurn()->value]->chooseCell();
+                if ($cell === false) {
+                    break;
                 }
+                $game->process($cell[0], $cell[1]);
             } catch (\Exception $e) {
                 $output->write(PHP_EOL . $e->getMessage() . PHP_EOL);
             }

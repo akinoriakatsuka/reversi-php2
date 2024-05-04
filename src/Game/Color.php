@@ -2,10 +2,10 @@
 
 namespace App\Game;
 
-enum Color
+enum Color: string
 {
-    case BLACK;
-    case WHITE;
+    case BLACK = 'black';
+    case WHITE = 'white';
 
     public function getMark(): string
     {
