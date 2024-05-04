@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Player;
+namespace App\GameDealer;
 
 interface PlayerInterface
 {

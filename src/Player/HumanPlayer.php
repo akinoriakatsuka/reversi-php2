@@ -3,6 +3,7 @@
 namespace App\Player;
 
 use App\Game\Game;
+use App\GameDealer\PlayerInterface;
 
 class HumanPlayer implements PlayerInterface
 {

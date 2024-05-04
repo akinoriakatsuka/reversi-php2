@@ -1,9 +1,11 @@
 <?php
 
-namespace App\Game;
+namespace App\GameDealer;
 
-use App\Output\OutputInterface;
-use App\Player\PlayerInterface;
+use App\GameDealer\OutputInterface;
+use App\GameDealer\PlayerInterface;
+use App\Game\Game;
+use App\Game\Color;
 
 class GameDealer
 {

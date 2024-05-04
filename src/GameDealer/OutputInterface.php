@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Output;
+namespace App\GameDealer;
 
 interface OutputInterface
 {

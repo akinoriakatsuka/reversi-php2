@@ -2,8 +2,8 @@
 
 require_once __DIR__ . '/vendor/autoload.php';
 
+use App\GameDealer\GameDealer;
 use App\Game\GameFactory;
-use App\Game\GameDealer;
 use App\Player\HumanPlayer;
 use App\Player\CPUPlayer;
 use App\Output\ConsoleOutput;
