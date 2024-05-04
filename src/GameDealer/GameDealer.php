@@ -43,10 +43,16 @@ class GameDealer
             try {
                 if ($game->getTurn() === Color::BLACK) {
                     $cell = $black->chooseCell();
-                    $this->game->process($cell[0], $cell[1]);
+                    if ($cell === false) {
+                        break;
+                    }
+                    $game->process($cell[0], $cell[1]);
                 } else {
                     $cell = $white->chooseCell();
-                    $this->game->process($cell[0], $cell[1]);
+                    if ($cell === false) {
+                        break;
+                    }
+                    $game->process($cell[0], $cell[1]);
                 }
             } catch (\Exception $e) {
                 $output->write(PHP_EOL . $e->getMessage() . PHP_EOL);

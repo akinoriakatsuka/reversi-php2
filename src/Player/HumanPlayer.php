@@ -11,9 +11,12 @@ class HumanPlayer implements PlayerInterface
     {
     }
 
-    public function chooseCell(): array
+    public function chooseCell(): array|false
     {
         $input = $this->input();
+        if($input === 'q') {
+            return false;
+        }
         return $this->getCell($input);
     }
 

@@ -4,5 +4,5 @@ namespace App\GameDealer;
 
 interface PlayerInterface
 {
-    public function chooseCell(): array;
+    public function chooseCell(): array|false;
 }
