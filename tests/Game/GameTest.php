@@ -82,10 +82,10 @@ final class GameTest extends TestCase
 
         $board = $game->getBoard();
 
-        $this->assertSame($board->cell_list[0][0]->getColor(), Color::BLACK);
-        $this->assertSame($board->cell_list[0][1]->getColor(), Color::BLACK);
-        $this->assertSame($board->cell_list[0][2]->getColor(), Color::BLACK);
-        $this->assertSame($board->cell_list[0][3]->getColor(), Color::BLACK);
+        $this->assertSame($board->cell_list[0][0]?->getColor(), Color::BLACK);
+        $this->assertSame($board->cell_list[0][1]?->getColor(), Color::BLACK);
+        $this->assertSame($board->cell_list[0][2]?->getColor(), Color::BLACK);
+        $this->assertSame($board->cell_list[0][3]?->getColor(), Color::BLACK);
     }
 
     /**
@@ -117,14 +117,14 @@ final class GameTest extends TestCase
 
         $board = $game->getBoard();
 
-        $this->assertSame($board->cell_list[1][1]->getColor(), Color::BLACK);
-        $this->assertSame($board->cell_list[1][2]->getColor(), Color::BLACK);
-        $this->assertSame($board->cell_list[1][3]->getColor(), Color::BLACK);
-        $this->assertSame($board->cell_list[2][1]->getColor(), Color::BLACK);
-        $this->assertSame($board->cell_list[2][3]->getColor(), Color::BLACK);
-        $this->assertSame($board->cell_list[3][1]->getColor(), Color::BLACK);
-        $this->assertSame($board->cell_list[3][2]->getColor(), Color::BLACK);
-        $this->assertSame($board->cell_list[3][3]->getColor(), Color::BLACK);
+        $this->assertSame($board->cell_list[1][1]?->getColor(), Color::BLACK);
+        $this->assertSame($board->cell_list[1][2]?->getColor(), Color::BLACK);
+        $this->assertSame($board->cell_list[1][3]?->getColor(), Color::BLACK);
+        $this->assertSame($board->cell_list[2][1]?->getColor(), Color::BLACK);
+        $this->assertSame($board->cell_list[2][3]?->getColor(), Color::BLACK);
+        $this->assertSame($board->cell_list[3][1]?->getColor(), Color::BLACK);
+        $this->assertSame($board->cell_list[3][2]?->getColor(), Color::BLACK);
+        $this->assertSame($board->cell_list[3][3]?->getColor(), Color::BLACK);
     }
 
     public function testCanPut(): void

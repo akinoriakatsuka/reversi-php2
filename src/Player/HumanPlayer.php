@@ -7,14 +7,17 @@ use App\GameDealer\PlayerInterface;
 
 class HumanPlayer implements PlayerInterface
 {
-    public function __construct(private Game $game)
+    public function __construct()
     {
     }
 
+    /**
+     * @return array<int>|false
+     */
     public function chooseCell(): array|false
     {
         $input = $this->input();
-        if($input === 'q') {
+        if ($input === 'q') {
             return false;
         }
         return $this->getCell($input);
@@ -25,11 +28,16 @@ class HumanPlayer implements PlayerInterface
      */
     private function input(): string
     {
-        return trim(fgets(STDIN));
+        $input = fgets(STDIN);
+        if ($input === false) {
+            return '';
+        }
+        return trim($input);
     }
 
     /**
      * 入力された文字列をプレイする座標に変換して返す
+     * @return array<int>
      */
     private function getCell(string $input): array
     {

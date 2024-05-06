@@ -11,6 +11,9 @@ class CPUPlayer implements PlayerInterface
     {
     }
 
+    /**
+     * @return array<int>
+     */
     public function chooseCell(): array
     {
         $playable = $this->game->getPlayableCells();

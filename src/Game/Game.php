@@ -195,7 +195,7 @@ class Game
     {
         $flippable = $this->getFlippableStones($x, $y, $dx, $dy);
         foreach($flippable as $pos) {
-            $this->board->cell_list[$pos[0]][$pos[1]]->flip();
+            $this->board->cell_list[$pos[0]][$pos[1]]?->flip();
         }
     }
 
