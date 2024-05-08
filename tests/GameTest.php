@@ -45,12 +45,12 @@ final class GameTest extends TestCase
 
     public function testProcess(): void
     {
-        // $board = new Board(1, 8);
-        // $board->setStone(0, 0, new Stone(Color::BLACK));
-        // $board->setStone(0, 1, new Stone(Color::WHITE));
-        // $game = new Game($board);
+        $board = new Board(1, 8);
+        $board->setStone(0, 0, new Stone(Color::BLACK));
+        $board->setStone(0, 1, new Stone(Color::WHITE));
+        $game = new Game($board);
 
-        // $game->process(0, 2);
-        // $this->assertSame($board->cell_list[0][1]?->getColor(), Color::BLACK);
+        $game->process(0, 2);
+        $this->assertSame($board->cell_list[0][1]?->getColor(), Color::BLACK);
     }
 }
