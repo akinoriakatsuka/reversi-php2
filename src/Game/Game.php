@@ -41,16 +41,16 @@ class Game
         return $output;
     }
 
-    public function play(int $x, int $y): void
+    public function process(int $x, int $y): void
     {
-        $stone = new Stone($this->turn);
-        $this->board->setStone($x, $y, $stone);
+        // $stone = new Stone($this->turn);
+        // $this->board->setStone($x, $y, $stone);
 
-        if($x === 0 && $y === 2){
-            $this->board->setStone(0, 1, new Stone(Color::BLACK));
-        }
+        // if($x === 0 && $y === 2) {
+        //     $this->board->cell_list[0][1]->flip();
+        // }
 
-        $this->toggleTurn();
+        // $this->toggleTurn();
     }
 
     private function toggleTurn(): void

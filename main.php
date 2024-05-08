@@ -34,7 +34,7 @@ while (true) {
         'h' => 7,
     };
 
-    $game->play($row, $col);
+    $game->process($row, $col);
     echo PHP_EOL;
     // ゲームの処理
     if ($game->finished()) {
