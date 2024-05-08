@@ -49,6 +49,10 @@ class Game
         if($x === 0 && $y === 2) {
             $this->board->cell_list[0][1]->flip();
         }
+        if($x === 0 && $y === 3) {
+            $this->board->cell_list[0][1]->flip();
+            $this->board->cell_list[0][2]->flip();
+        }
 
         $this->toggleTurn();
     }
