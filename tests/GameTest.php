@@ -79,4 +79,16 @@ final class GameTest extends TestCase
         $this->assertSame($board->cell_list[0][1]?->getColor(), Color::WHITE);
         $this->assertSame($board->cell_list[0][2]?->getColor(), Color::WHITE);
     }
+
+    public function testProcess4(): void
+    {
+        $board = new Board(1, 8);
+        $board->setStone(0, 1, new Stone(Color::WHITE));
+        $board->setStone(0, 2, new Stone(Color::WHITE));
+        $game = new Game($board);
+
+        $game->process(0, 3);
+        $this->assertSame($board->cell_list[0][1]?->getColor(), Color::WHITE);
+        $this->assertSame($board->cell_list[0][2]?->getColor(), Color::WHITE);
+    }
 }
