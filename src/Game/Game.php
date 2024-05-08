@@ -48,11 +48,11 @@ class Game
 
         while (true) {
             $y -= 1;
-            if ($y < 0) {
+            $cell = $this->board->cell_list[$x][$y];
+            if ($y < 0 || $cell === null) {
                 $flip_cell_list = [];
                 break;
             }
-            $cell = $this->board->cell_list[$x][$y];
             if ($cell->getColor() === $this->turn) {
                 break;
             } else {
