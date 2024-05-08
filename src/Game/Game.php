@@ -46,22 +46,23 @@ class Game
         $stone = new Stone($this->turn);
         $this->board->setStone($x, $y, $stone);
 
-        /**
-         * 石を探してひっくり返す
-         */
         while (true) {
             $y -= 1;
-            if ($y <= 0) {
+            if ($y < 0) {
+                $flip_cell_list = [];
                 break;
             }
             $cell = $this->board->cell_list[$x][$y];
-            if ($cell === null) {
-                break;
-            }
             if ($cell->getColor() === $this->turn) {
                 break;
+            } else {
+                $flip_cell_list[] = $cell;
             }
-            $cell->flip();
+        }
+        if(!empty($flip_cell_list)) {
+            foreach ($flip_cell_list as $cell) {
+                $cell?->flip();
+            }
         }
         $this->toggleTurn();
     }
